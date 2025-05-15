@@ -13,7 +13,6 @@ public class PlantUMLRunner {
             new File(outPath).mkdirs();
 
             String path1 = outPath + "/" + outName + ".puml";
-            //File file = new File(path);
             FileWriter writer = new FileWriter(path1);
             writer.write(data);
             writer.close();
@@ -22,7 +21,6 @@ public class PlantUMLRunner {
             Process process = builder.start();
             System.out.println(process.info());
             process.waitFor();
-            //file.delete();
         } catch (IOException | InterruptedException e) {
             System.err.println(e.getMessage());
         }

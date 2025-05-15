@@ -3,17 +3,14 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class SvgScene {
-    // Prywatna tablica 3 referencji do obiektów Polygon
     private Shape[] shapes = new Shape[3];
     private int index = 0;
 
-    // Funkcja addPolygon() dodająca obiekt Polygon do tablicy
     public void addShape(Shape shape) {
         shapes[index] = shape;
-        index = (index + 1) % shapes.length; // Nadpisywanie od początku po zapełnieniu
+        index = (index + 1) % shapes.length;
     }
 
-    // Metoda toSvg() generująca scenę SVG z wszystkimi wielokątami
     public String toSvg(double width, double hight) {
         StringBuilder sb = new StringBuilder(String.format(Locale.US,"<svg xmlns='http://www.w3.org/2000/svg' width='%.2f' height='%.2f'>\n",width,hight));
         for (Shape shape : shapes) {
@@ -47,7 +44,6 @@ public class SvgScene {
     }
 
 
-    // Przykładowa metoda main do testowania
     public static void main(String[] args) {
         Point[] points1 = {new Point(0, 0), new Point(10, 0), new Point(10, 10), new Point(0, 10)};
         Point[] points2 = {new Point(20, 20), new Point(30, 20), new Point(30, 30), new Point(20, 30)};
@@ -65,7 +61,7 @@ public class SvgScene {
         scene.addShape(polygon1);
         scene.addShape(polygon2);
         scene.addShape(polygon3);
-        scene.addShape(ellipse); // Nadpisze polygon1
+        scene.addShape(ellipse);
 
         System.out.println(scene.toSvg(500,500));
 

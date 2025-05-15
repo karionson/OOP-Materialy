@@ -1,19 +1,11 @@
 import java.util.Locale;
 
 public class Polygon extends Shape{
-    // Prywatna tablica obiektów Point
     private Point[] points;
-    //private Style style;
 
-    // Konstruktor przyjmujący tablicę obiektów Point
     public Polygon(Point[] points, Style style) {
         super(style);
-        // this.points=points;
 
-        // Konstruktor kopiujący, płytka kopia
-        //this.points = Arrays.copyOf(points, points.length);
-
-        // Konstruktor kopiujący, głęboka kopia
         this.points = new Point[points.length];
         for (int i = 0; i < points.length; i++) {
             this.points[i] = new Point(points[i].getX(), points[i].getY());
@@ -21,17 +13,14 @@ public class Polygon extends Shape{
         if (style == null) this.style = new Style("none", "black", 1.0);
     }
 
-    // Konstruktor kopiujący wykonujący głęboką kopię obiektu
     public Polygon(Polygon other) {
         super(other.style);
         this.points = new Point[other.points.length];
         for (int i = 0; i < other.points.length; i++) {
             this.points[i] = new Point(other.points[i].getX(), other.points[i].getY());
         }
-        //this.style = other.style != null ? other.style : new Style("none", "black", 1.0);
     }
 
-    // Metoda toSvg() zwracająca opis wielokąta w formacie SVG
     public String toSvg() {
         StringBuilder sb = new StringBuilder("<polygon points='");
         for (Point point : points) {
@@ -44,7 +33,6 @@ public class Polygon extends Shape{
         return sb.toString();
     }
 
-    // Metoda toString() zwracająca informacje o punktach wielokątu
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Polygon: [");

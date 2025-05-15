@@ -21,8 +21,6 @@ public class Person implements Comparable<Person>, Serializable{
         this.children = new HashSet<>();
     }
 
-    //lab6-start-------------------------------------------------------
-
     public static Person fromCsvLine(String line) {
         String[] fields = line.split(",");
         String[] imieNazwisko = fields[0].split(" ");
@@ -52,9 +50,7 @@ public class Person implements Comparable<Person>, Serializable{
                 person.validateLifespan();
                 person.validateAmbiguity(result);
                 result.add(person);
-                //br.close();
-                //dodanie dziecka do rodziców
-                parentsName = line.split(","); //skladowe 3 i 4
+                parentsName = line.split(","); 
                 if(parentsName.length>3) {
                     for (Person p : result) {
                         if ((p.imie + " " + p.nazwisko).equals(parentsName[3])) {
@@ -124,7 +120,6 @@ public class Person implements Comparable<Person>, Serializable{
         }
     }
 
-    //lab6-end-----------------------------------------------------------
 
     public boolean adopt(Person child) {
         return children.add(child);
@@ -157,7 +152,6 @@ public class Person implements Comparable<Person>, Serializable{
 
     @Override
     public int compareTo(Person other) {
-        //zero dla równych, ujemna dla daty wcześniejszej, dodatnia dla daty późniejszej
         return this.dataUrodzin.compareTo(other.dataUrodzin);
     }
 
@@ -293,7 +287,6 @@ public class Person implements Comparable<Person>, Serializable{
     }
 
 
-    //Zad 8 i 9
     public static String toPlantUMLTreeV3(List<Person> people, Predicate<Person> condition, Function<String, String> postProcess) {
         String result = "@startuml\n%s\n%s\n@enduml";
         Function<String, String> objectLine = str -> String.format("object \"%s\" as %s", str, str.replaceAll(" ", ""));
@@ -323,41 +316,7 @@ public class Person implements Comparable<Person>, Serializable{
         return String.format(result, objectString, relationString);
     }
 
-    //Zad 3 bez Consumer
-    //    public static String toPlantUMLTree(List<Person> people) {
-//        String result = "@startuml\n%s\n%s\n@enduml";
-//        Function<String, String> objectLine = str -> String.format("object \"%s\" as %s\n", str, str.replaceAll(" ", ""));
-//        Function<String[], String> relationLine = pair -> String.format("%s<--%s\n", pair[0].replaceAll(" ", ""), pair[1].replaceAll(" ", ""));
-//
-//        StringBuilder objects = new StringBuilder();
-//        StringBuilder relations = new StringBuilder();
-//
-//        Set<String> addedObjects = new HashSet<>();
-//        Set<String> addedRelations = new HashSet<>();
-//
-//        for (Person person : people) {
-//            String parentKey = person.getImie() + " " + person.getNazwisko();
-//            if (addedObjects.add(parentKey)) {
-//                objects.append(objectLine.apply(parentKey));
-//            }
-//
-//            for (Person child : person.getChildren()) {
-//                String childKey = child.getImie() + " " + child.getNazwisko();
-//
-//                if (addedObjects.add(childKey)) {
-//                    objects.append(objectLine.apply(childKey));
-//                }
-//
-//                String[] relationPair = new String[] { parentKey, childKey };
-//                String relationString = relationLine.apply(relationPair);
-//                if (addedRelations.add(relationString)) {
-//                    relations.append(relationString);
-//                }
-//            }
-//        }
-//
-//        return String.format(result, objects, relations);
-//    }
+
 
 
 

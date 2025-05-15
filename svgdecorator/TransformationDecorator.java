@@ -2,7 +2,7 @@ import java.util.Locale;
 
 public class TransformationDecorator extends ShapeDecorator {
     //String translate, rotate, scale;
-    private String transform;  //"translate rotate scale"
+    private String transform;  
 
     public TransformationDecorator(Shape shape) {
         super(shape);
